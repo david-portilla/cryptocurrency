@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react'
 import styled from '@emotion/styled'
 import image from './cryptomonedas.png'
 import Form from './components/Form'
+import axios from 'axios'
 
 const Wrapper = styled.div`
   max-width: 900px;
@@ -44,6 +45,15 @@ function App () {
   useEffect(() => {
     // avoid run on first time
     if (currency === '') return
+
+    // fecth API to get a quote
+    const getQuote = async () => {
+      const URL = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${ criptoCurrency }&tsyms=${ currency }`
+      const result = await axios.get(URL)
+      console.log(result.data.DISPLAY[criptoCurrency][currency])
+      // saveCriptoList(result.data.Data)
+    }
+    getQuote()
 
     console.log('Quoting...')
   }, [currency, criptoCurrency])
