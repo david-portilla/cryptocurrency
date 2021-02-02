@@ -25,6 +25,7 @@ const Form = () => {
 
   // Add state for cripto list
   const [criptoList, saveCriptoList] = useState([])
+  const [error, setError] = useState(false)
 
   // Currencies
   const CURRENCIES = [
@@ -52,8 +53,27 @@ const Form = () => {
     callAPI()
   }, [])
 
+  // Quote currency
+  const quoteCurrency = e => {
+    e.preventDefault()
+
+    // boths input are set
+    if (currency === '' || criptoCurrency === '') {
+      setError(true)
+      return
+    }
+
+    // Pass data to main component
+    setError(false)
+  }
+
   return (
-    <form>
+    <form
+      onSubmit={quoteCurrency}
+    >
+
+      {error ? 'All fields are require' : null}
+
       <Selection />
       <SelectCripto />
 
