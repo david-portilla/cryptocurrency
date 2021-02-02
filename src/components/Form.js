@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import useCurrency from '../hooks/useCurrency'
 import useCriptoCurrency from '../hooks/useCriptoCurrency'
 import axios from 'axios'
+import Error from './Error'
 
 const Button = styled.input`
   margin-top: 20px;
@@ -72,7 +73,7 @@ const Form = () => {
       onSubmit={quoteCurrency}
     >
 
-      {error ? 'All fields are require' : null}
+      {error ? <Error message='All fields are required' /> : null}
 
       <Selection />
       <SelectCripto />
