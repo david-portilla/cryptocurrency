@@ -3,6 +3,7 @@ import styled from '@emotion/styled'
 import image from './cryptomonedas.png'
 import Form from './components/Form'
 import axios from 'axios'
+import Quote from './components/Quote'
 
 const Wrapper = styled.div`
   max-width: 900px;
@@ -41,6 +42,7 @@ function App () {
 
   const [currency, setCurrency] = useState('')
   const [criptoCurrency, setCriptoCurrency] = useState('')
+  const [result, setResult] = useState({})
 
   useEffect(() => {
     // avoid run on first time
@@ -50,8 +52,7 @@ function App () {
     const getQuote = async () => {
       const URL = `https://min-api.cryptocompare.com/data/pricemultifull?fsyms=${ criptoCurrency }&tsyms=${ currency }`
       const result = await axios.get(URL)
-      console.log(result.data.DISPLAY[criptoCurrency][currency])
-      // saveCriptoList(result.data.Data)
+      setResult(result.data.DISPLAY[criptoCurrency][currency])
     }
     getQuote()
 
@@ -72,6 +73,7 @@ function App () {
           setCurrency={setCurrency}
           setCriptoCurrency={setCriptoCurrency}
         />
+        <Quote result={result}></Quote>
       </div>
     </Wrapper>
   );
