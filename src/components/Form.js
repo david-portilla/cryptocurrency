@@ -44,14 +44,14 @@ const Form = ({setCurrency, setCriptoCurrency}) => {
   const [criptoCurrency, SelectCripto] =
     useCriptoCurrency('Choose your cripto currency', '', criptoList)
 
-  // Call the cripto API
+  // Get list of cripto currencies
   useEffect(() => {
-    const callAPI = async () => {
+    const getCriptoList = async () => {
       const URL = 'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD'
       const result = await axios.get(URL)
       saveCriptoList(result.data.Data)
     }
-    callAPI()
+    getCriptoList()
   }, [])
 
   // Get a Quote currency
