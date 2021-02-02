@@ -76,7 +76,7 @@ function App () {
     <Wrapper>
       <div>
         <Image
-          src={image}
+          src={process.env.PUBLIC_URL + image}
           alt="Crypto image"
         />
       </div>
