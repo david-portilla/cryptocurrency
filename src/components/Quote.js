@@ -1,7 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
 
-
 const DivResult = styled.div`
   color: #fff;
   font-family: Arial, Helvetica, sans-serif;
@@ -26,9 +25,7 @@ const Price = styled.p`
 
 const Quote = ({result}) => {
   if (Object.keys(result).length === 0) return null
-
-  console.log(result)
-
+  // console.log(result)
   return (
     <DivResult>
       <Price>The price is:<span> {result.PRICE}</span></Price>
