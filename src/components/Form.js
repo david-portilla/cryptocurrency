@@ -22,7 +22,7 @@ const Button = styled.input`
   }
 `
 
-const Form = () => {
+const Form = ({setCurrency, setCriptoCurrency}) => {
 
   // Add state for cripto list
   const [criptoList, saveCriptoList] = useState([])
@@ -44,7 +44,7 @@ const Form = () => {
   const [criptoCurrency, SelectCripto] =
     useCriptoCurrency('Choose your cripto currency', '', criptoList)
 
-  // call the cripto API
+  // Call the cripto API
   useEffect(() => {
     const callAPI = async () => {
       const URL = 'https://min-api.cryptocompare.com/data/top/mktcapfull?limit=10&tsym=USD'
@@ -54,7 +54,7 @@ const Form = () => {
     callAPI()
   }, [])
 
-  // Quote currency
+  // Get a Quote currency
   const quoteCurrency = e => {
     e.preventDefault()
 
@@ -66,6 +66,8 @@ const Form = () => {
 
     // Pass data to main component
     setError(false)
+    setCurrency(currency)
+    setCriptoCurrency(criptoCurrency)
   }
 
   return (

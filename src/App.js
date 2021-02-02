@@ -1,3 +1,4 @@
+import React, {useEffect, useState} from 'react'
 import styled from '@emotion/styled'
 import image from './cryptomonedas.png'
 import Form from './components/Form'
@@ -36,6 +37,17 @@ const Heading = styled.h1`
 `
 
 function App () {
+
+  const [currency, setCurrency] = useState('')
+  const [criptoCurrency, setCriptoCurrency] = useState('')
+
+  useEffect(() => {
+    // avoid run on first time
+    if (currency === '') return
+
+    console.log('Quoting...')
+  }, [currency, criptoCurrency])
+
   return (
     <Wrapper>
       <div>
@@ -46,7 +58,10 @@ function App () {
       </div>
       <div>
         <Heading>Quote cryptocurrencies</Heading>
-        <Form />
+        <Form
+          setCurrency={setCurrency}
+          setCriptoCurrency={setCriptoCurrency}
+        />
       </div>
     </Wrapper>
   );
