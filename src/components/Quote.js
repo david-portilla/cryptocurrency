@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from '@emotion/styled'
+import PropTypes from 'prop-types'
 
 const DivResult = styled.div`
   color: #fff;
@@ -22,10 +23,8 @@ const Price = styled.p`
   }
 `
 
-
 const Quote = ({result}) => {
   if (Object.keys(result).length === 0) return null
-  // console.log(result)
   return (
     <DivResult>
       <Price>The price is:<span> {result.PRICE}</span></Price>
@@ -37,4 +36,7 @@ const Quote = ({result}) => {
   )
 }
 
+Quote.propTypes = {
+  result: PropTypes.object.isRequired,
+}
 export default Quote

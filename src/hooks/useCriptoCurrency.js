@@ -1,5 +1,6 @@
 import React, {Fragment, useState} from 'react'
 import styled from '@emotion/styled'
+import PropTypes from 'prop-types'
 
 const Label = styled.label`
   font-family: 'Bebas Neue', cursive;
@@ -48,6 +49,12 @@ const useCriptoCurrency = (label, initialState, options) => {
   )
 
   return [state, SelectCripto, updateState]
+}
+
+useCriptoCurrency.propTypes = {
+  label: PropTypes.string.isRequired,
+  initialState: PropTypes.array.isRequired,
+  options: PropTypes.array.isRequired
 }
 
 export default useCriptoCurrency
